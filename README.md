@@ -1,5 +1,5 @@
 # Ahoy Movement Studio
-## AhoyMap iOS SDK
+## AhoyNave iOS SDK
 
 
 
@@ -21,7 +21,7 @@ The AhoyNave iOS SDK is built to provide seamless integration of Navigation alon
 ## Installation
 
   Signup for **Ahoy Movement Studio** and obtain a **Subscription Key**, you can do so by signing up [here](https://ams.ahoy.technology)
-  The **AhoyMap** SDK for iOS can be downloaded through **Cocoapods**
+  The **AhoyNave** SDK for iOS can be downloaded through **Cocoapods**
   
   - Install cocoapods on your mac(if you dont have it installed already) by running the following command on the terminal
         ```
@@ -38,7 +38,7 @@ The AhoyNave iOS SDK is built to provide seamless integration of Navigation alon
         target 'TestApp' do
         use_frameworks!
             # Pods for App
-            pod 'AhoyMap'
+            pod 'AhoyNave'
         end
     ``` 
 - Now open the terminal and run the following command in the terminal
@@ -51,7 +51,7 @@ The AhoyNave iOS SDK is built to provide seamless integration of Navigation alon
 - Open **AppDelegate** file of your project and add the following
 
     ```
-      import AhoyMap
+      import AhoyNave
     ``` 
 - Add the SDK initialisation function in the **didFinishLaunchingWithOptions** function of the **AppDelegate**, the SDK can be initialised through this function
 
@@ -82,7 +82,7 @@ The AhoyNave iOS SDK is built to provide seamless integration of Navigation alon
 
 ## Display a Map
 - Open the info.plist and make sure you have location usage permissions by adding NSLocationWhenInUseUsageDescription key.
-- The **AhoyMapSDK** offers AhoyMapView as an **IBDesignable** so all you need to do is just drop a UIView in xib/storyboard and select the custom class to AhoyMapView.
+- The **AhoyNave SDK** offers AhoyMapView as an **IBDesignable** so all you need to do is just drop a UIView in xib/storyboard and select the custom class to AhoyMapView.
 - In case if the MapView is your rootViewController, please have a look at **AhoySDKManagerDelegate** in the AppDelegate to make sure the SDK has been initialised before loading your rootViewController, you can refer to the example project for details implementation.
 - You can just run the app to see the Map
 
@@ -129,9 +129,19 @@ The AhoyNave iOS SDK is built to provide seamless integration of Navigation alon
             print("could not add point annotation")
         }
     ```
- ### Navigate to destination
+ ### Navigate to destination using coordinates
  - The navigate feature of AhoyNave SDK helps you in seamless integration of navigation functionality in no time, here is all you need to do to have the navigation feature up and running
  - Open your view controller and add the following
  
-
+    ```
+        let destinationLocation = CLLocation(latitude: 25.327396542469668, longitude: 55.38771042802632)
+        AhoyMapManager.shared().launchAhoyMaps(destinationLocation: destinationLocation)
+    ```
+### Navigate to destination using TripID
+- If you have a TripID using which you can restict the user to follow your trip, the navigation feature with TripID can be integrated as follows
+  
+     ```
+        let currentTripId = "Afisb6-3dfhr-hfghdgf-bdhfbi"
+        AhoyMapManager.shared().launchAhoyMaps(tripID: currentTripId)
+     ```
 
